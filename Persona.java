@@ -7,7 +7,7 @@
 * @date: 24-09-2024
 * @version 1
 */
-package proEntregable02;
+package Clases.Progra2;
 
 public class Persona {
 	protected String dni;
@@ -118,7 +118,7 @@ public class Persona {
 
   public String toString(){
 		String cad="";
-		cad=String.format("%8s %-15s %-15s %-15s %5d %-10s",dni,apat,amat,nombre,edad,sexo);
+		cad=String.format("%8s %-10s %-10s %-10s %5d %-10s",dni,apat,amat,nombre,edad,sexo);
 		return cad;
   }
 }

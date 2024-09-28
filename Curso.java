@@ -8,7 +8,7 @@
 * @date: 14 set. 2024
 * @version 1
 */
-package Clases;
+package Clases.Progra2;
 
 public class Curso {
    // Atributos

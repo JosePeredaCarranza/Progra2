@@ -7,7 +7,7 @@
 * @date: 24-09-2024
 * @version 1
 */
-package proEntregable02;
+package Clases.Progra2;
 
 public class Administrativo extends Persona{
 	private int codAdm;

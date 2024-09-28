@@ -8,8 +8,8 @@
 * @date: 10 set. 2024
 * @version 1
 */
-package Clases;
-
+package Clases.Progra2;
+ 
 
 public class VectorAlumno {
 	private Alumno x[];
@@ -78,10 +78,13 @@ public class VectorAlumno {
 
 	public void mostrarVector(){
 		if(x.length > 0){
+			encabezado1();
+			encabezado2();
 			for(int i=0;i<x.length;i=i+1){
-				System.out.printf("%3d",i+1);
+				System.out.printf("%5d",i+1);
 				System.out.println(x[i]);
 			}
+			raya1();
 		}
 		else{
 			System.out.println("Vector vacio...");
@@ -89,11 +92,11 @@ public class VectorAlumno {
 	}
 
 	public void mostrarVector(Alumno v[]){
-		if(v.length > 0){
+		if(v.length > 0 && v[0] != null){
 			encabezado1();
 			encabezado2();
 			for(int i = 0; i < v.length ; i++){
-				System.out.printf("%3d",i+1);
+				System.out.printf("%5d",i+1);
 				System.out.println(v[i]);
 			}
 			raya1();
@@ -105,7 +108,7 @@ public class VectorAlumno {
 
 	public void raya1(){
 		int i;
-		for(i=0;i<200;){
+		for(i=0;i<105;){
 		System.out.print("-");
 		i=i+1;
 		}
@@ -113,7 +116,7 @@ public class VectorAlumno {
 	}
 	public void raya2(){
 		int i;
-		for(i=0;i<200;){
+		for(i=0;i<105;){
 		System.out.print("=");
 		i=i+1;
 		}
@@ -122,21 +125,21 @@ public class VectorAlumno {
 
 	public void encabezado1(){
 		String t1="RELACION DE ALUMNOS";
-		System.out.printf("\t\t\t\t\t\t\t%s\n",t1);
+		System.out.printf("\t\t\t\t\t%s\n",t1);
 	}
 	public void encabezado2(){
 		String s1="No";
 		String s2="DNI";
 		String s3="A.Paterno";
 		String s4="A.Materno";
-		String s5="Edad";
-		String s6="Sexo";
-		String s7="CODIGO";
-		String s8="NOMBRE";
-		String s9="NOTA";
-		String s10="ESTADO";
+		String s5="Nombre";
+		String s6="Edad";
+		String s7="Sexo";
+		String s8="Codigo";
+		String s9="Nota";
+		String s10="Estado";
 		raya2();
-		System.out.printf("%5s %8s %12s %10s %14s %18s %22s %26s %30s %34s\n",s1,s2,s3,s4,s5,s6,s7,s8,s9,s10);
+		System.out.printf("%5s %8s %9s %10s %7s %9s %3s %12s %12s %15s\n",s1,s2,s3,s4,s5,s6,s7,s8,s9,s10);
 		raya1();
 	}
 	@Override
@@ -152,32 +155,98 @@ public class VectorAlumno {
 	//Ordenamiento usando el algoritmo quicksort usamos el parametro opc para elegir el atributo a ordenar
 	public static void quickSort(Alumno[] arr, int low, int high,int opc) {
       if (low < high) {
-      	switch(opc) {
+    	  int pi = 0;
+    	  switch(opc) {
       		case 1:
-      			int pi = sortAlumnoxNombre(arr, low, high);
-               quickSort(arr, low, pi - 1,opc);
-               quickSort(arr, pi + 1, high,opc);
-               break;
+      			pi = sortAlumnoxDNI(arr, low, high);
+      			break;
       		case 2:
-      			int pi1 = sortAlumnoxCodigo(arr, low, high);
-               quickSort(arr, low, pi1 - 1,opc);
-               quickSort(arr, pi1 + 1, high,opc);
-               break;
+      			pi = sortAlumnoxAPaterno(arr, low, high);
+      			break;
       		case 3:
-      			int pi2 = sortAlumnoxNota(arr, low, high);
-               quickSort(arr, low, pi2 - 1,opc);
-               quickSort(arr, pi2 + 1, high,opc);
-               break;
+      			pi = sortAlumnoxAMaterno(arr, low, high);
+    			break;
       		case 4:
-      			int pi3 = sortAlumnoxEstado(arr, low, high);
-               quickSort(arr, low, pi3 - 1,opc);
-               quickSort(arr, pi3 + 1, high,opc);
-               break;
-      	}
+      			pi = sortAlumnoxNombre(arr, low, high);
+     			break;
+      		case 5:
+      			pi = sortAlumnoxEdad(arr, low, high);
+      			break;
+      		case 6:
+      			pi = sortAlumnoxSexo(arr, low, high);
+      			break;
+      		case 7:
+      			pi = sortAlumnoxCodigo(arr, low, high);
+      			break;
+      		case 8:
+      			pi = sortAlumnoxNota(arr, low, high);
+      			break;
+      		case 9:
+      			pi = sortAlumnoxEstado(arr, low, high);
+      			break;
+    	  }
+    	  quickSort(arr, low, pi - 1,opc);
+    	  quickSort(arr, pi + 1, high,opc);
       }
-  }
+	}
+	private static int sortAlumnoxDNI(Alumno []arr,int low,int high) {
+		Alumno pivot = arr[high];
+	      int i = low - 1;
 
-  private static int sortAlumnoxNombre(Alumno[] arr, int low, int high) {
+	      for (int j = low; j < high; j++) {
+	          if (arr[j].getDni().compareTo(pivot.getDni()) <= 0) {
+	              i++;
+	              Alumno temp = arr[i];
+	              arr[i] = arr[j];
+	              arr[j] = temp;
+	          }
+	      }
+
+	      Alumno temp = arr[i + 1];
+	      arr[i + 1] = arr[high];
+	      arr[high] = temp;
+
+	      return i + 1;
+	}
+	private static int sortAlumnoxAPaterno(Alumno []arr,int low,int high) {
+		Alumno pivot = arr[high];
+		int i = low - 1;
+		
+		for (int j = low; j < high; j++) {
+			if (arr[j].getApat().compareTo(pivot.getApat()) <= 0) {
+				i++;
+				Alumno temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+		
+		Alumno temp = arr[i + 1];
+		arr[i + 1] = arr[high];
+		arr[high] = temp;
+		
+		return i + 1;
+	}
+	private static int sortAlumnoxAMaterno(Alumno []arr,int low,int high) {
+		Alumno pivot = arr[high];
+		int i = low - 1;
+		
+		for (int j = low; j < high; j++) {
+			if (arr[j].getAmat().compareTo(pivot.getAmat()) <= 0) {
+				i++;
+				Alumno temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+		
+		Alumno temp = arr[i + 1];
+		arr[i + 1] = arr[high];
+		arr[high] = temp;
+		
+		return i + 1;
+	}
+	private static int sortAlumnoxNombre(Alumno[] arr, int low, int high) {
       Alumno pivot = arr[high];
       int i = low - 1;
 
@@ -196,6 +265,44 @@ public class VectorAlumno {
 
       return i + 1;
   }
+	private static int sortAlumnoxEdad(Alumno[] arr, int low, int high) {
+		Alumno pivot = arr[high];
+		int i = low - 1;
+		
+		for (int j = low; j < high; j++) {
+			if (arr[j].getEdad() < pivot.getEdad()) {
+				i++;
+				Alumno temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+		
+		Alumno temp = arr[i + 1];
+		arr[i + 1] = arr[high];
+		arr[high] = temp;
+		
+		return i + 1;
+	}
+	private static int sortAlumnoxSexo(Alumno[] arr, int low, int high) {
+	      Alumno pivot = arr[high];
+	      int i = low - 1;
+
+	      for (int j = low; j < high; j++) {
+	          if (arr[j].getSexo().compareTo(pivot.getSexo()) <= 0) {
+	              i++;
+	              Alumno temp = arr[i];
+	              arr[i] = arr[j];
+	              arr[j] = temp;
+	          }
+	      }
+
+	      Alumno temp = arr[i + 1];
+	      arr[i + 1] = arr[high];
+	      arr[high] = temp;
+
+	      return i + 1;
+	  }
   private static int sortAlumnoxCodigo(Alumno[] arr, int low, int high) {
 	  Alumno pivot = arr[high];
 	  int i = low - 1;
@@ -252,7 +359,348 @@ public class VectorAlumno {
 	  arr[high] = temp;
 	  return i + 1;
   }
-  public Alumno buscarAlumnoxNombre(Alumno a[], String nombre) {
+  public void quickSort(int low, int high, int opc) {
+      if (low < high) {
+          int pi = 0;
+          switch (opc) {
+          	case 1:
+    			pi = sortAlumnoxDNI( low, high);
+    			break;
+    		case 2:
+    			pi = sortAlumnoxAPaterno( low, high);
+    			break;
+    		case 3:
+    			pi = sortAlumnoxAMaterno( low, high);
+    			break;
+    		case 4:
+    			pi = sortAlumnoxNombre( low, high);
+    			break;
+    		case 5:
+    			pi = sortAlumnoxEdad( low, high);
+    			break;
+    		case 6:
+    			pi = sortAlumnoxSexo( low, high);
+    			break;
+    		case 7:
+    			pi = sortAlumnoxCodigo( low, high);
+    			break;
+    		case 8:
+    			pi = sortAlumnoxNota( low, high);
+    			break;
+    		case 9:
+    			pi = sortAlumnoxEstado( low, high);
+    			break;
+          }
+          quickSort(low, pi - 1, opc);
+          quickSort(pi + 1, high, opc);
+      }
+  }
+  private int sortAlumnoxDNI(int low, int high) {
+      Alumno pivot = x[high];
+      int i = low - 1;
+
+      for (int j = low; j < high; j++) {
+          if (x[j].getDni().compareTo(pivot.getDni()) <= 0) {
+              i++;
+              swap(i, j);
+          }
+      }
+      swap(i + 1, high);
+      return i + 1;
+  }
+  private int sortAlumnoxAPaterno(int low, int high) {
+      Alumno pivot = x[high];
+      int i = low - 1;
+
+      for (int j = low; j < high; j++) {
+          if (x[j].getApat().compareTo(pivot.getApat()) <= 0) {
+              i++;
+              swap(i, j);
+          }
+      }
+      swap(i + 1, high);
+      return i + 1;
+  }
+  private int sortAlumnoxAMaterno(int low, int high) {
+      Alumno pivot = x[high];
+      int i = low - 1;
+
+      for (int j = low; j < high; j++) {
+          if (x[j].getAmat().compareTo(pivot.getAmat()) <= 0) {
+              i++;
+              swap(i, j);
+          }
+      }
+      swap(i + 1, high);
+      return i + 1;
+  }
+  private int sortAlumnoxNombre(int low, int high) {
+      Alumno pivot = x[high];
+      int i = low - 1;
+
+      for (int j = low; j < high; j++) {
+          if (x[j].getNombre().compareTo(pivot.getNombre()) <= 0) {
+              i++;
+              swap(i, j);
+          }
+      }
+      swap(i + 1, high);
+      return i + 1;
+  }
+  private int sortAlumnoxEdad(int low, int high) {
+      Alumno pivot = x[high];
+      int i = low - 1;
+
+      for (int j = low; j < high; j++) {
+          if (x[j].getEdad() < pivot.getEdad()) {
+              i++;
+              swap(i, j);
+          }
+      }
+      swap(i + 1, high);
+      return i + 1;
+  }
+  private int sortAlumnoxSexo(int low, int high) {
+      Alumno pivot = x[high];
+      int i = low - 1;
+
+      for (int j = low; j < high; j++) {
+          if (x[j].getSexo().compareTo(pivot.getSexo()) <= 0) {
+              i++;
+              swap(i, j);
+          }
+      }
+      swap(i + 1, high);
+      return i + 1;
+  }
+  private int sortAlumnoxCodigo(int low, int high) {
+      Alumno pivot = x[high];
+      int i = low - 1;
+
+      for (int j = low; j < high; j++) {
+          if (x[j].getCod() < pivot.getCod()) {
+              i++;
+              swap(i, j);
+          }
+      }
+      swap(i + 1, high);
+      return i + 1;
+  }
+
+  private int sortAlumnoxNota(int low, int high) {
+      Alumno pivot = x[high];
+      int i = low - 1;
+
+      for (int j = low; j < high; j++) {
+          if (x[j].getNota() < pivot.getNota()) {
+              i++;
+              swap(i, j);
+          }
+      }
+      swap(i + 1, high);
+      return i + 1;
+  }
+
+  	private int sortAlumnoxEstado(int low, int high) {
+      Alumno pivot = x[high];
+      int i = low - 1;
+
+      for (int j = low; j < high; j++) {
+          if (x[j].getEstado() == pivot.getEstado()) {
+              i++;
+              swap(i, j);
+          }
+      }
+      swap(i + 1, high);
+      return i + 1;
+  	}
+
+  	private void swap(int i, int j) {
+  		Alumno temp = x[i];
+  		x[i] = x[j];
+  		x[j] = temp;
+  	}
+  	public Alumno buscarAlumnoxDNI(String nombre) {
+  		int dx,i;
+  		dx = x.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(nombre.equals(x[i].getDni())) {
+  					return x[i];
+  				}
+  			}		
+  		}
+  		return null;
+  	}
+  	public int buscarPosAlumnoxDNI(String nombre) {
+  		int dx,i;
+  		dx = x.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(nombre.equals(x[i].getDni())) {
+  					return i;
+  				}
+  			}		
+  		}
+  		return 0;
+  	}
+  	public Alumno buscarAlumnoxDNI(Alumno a[], String nombre) {
+  	  int dx,i;
+  	  dx = a.length;
+  	  if(dx == 0 ) {
+  		  System.out.println("Vector vacio");
+  	  }
+  	  else {
+  		  for(i = 0 ; i < dx ;i++) {
+  			  if(nombre.equals(a[i].getDni())) {
+  				  return a[i];
+  				}
+  			}		
+  		}
+  		return null;
+  	}
+  	public int buscarPosAlumnoxDNI(Alumno a[], String nombre) {
+  		int dx,i;
+  		dx = a.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(nombre.equals(a[i].getDni())) {
+  					return i;
+  				}
+  			}		
+  		}
+  		return 0;
+  	}
+  	public Alumno[] buscarAlumnoxAPaterno(String nombre) {
+  	  int dx,i;
+  	  dx = x.length;
+  	  if(dx == 0 ) {
+  		  System.out.println("Vector vacio");
+  	  }
+  	  else {
+  		  for(i = 0 ; i < dx ;i++) {
+  			  if(nombre.equals(x[i].getApat())) {
+  				  return x[i];
+  				}
+  			}		
+  		}
+  		return null;
+  	}
+  	public int[] buscarPosAlumnoxAPaterno(String nombre) {
+  		int dx,i;
+  		dx = x.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(nombre.equals(x[i].getApat())) {
+  					return x[i];
+  				}
+  			}		
+  		}
+  		return null;
+  	}
+  	public Alumno[] buscarAlumnoxAMaterno(String nombre) {
+  	  int dx,i;
+  	  dx = x.length;
+  	  if(dx == 0 ) {
+  		  System.out.println("Vector vacio");
+  	  }
+  	  else {
+  		  for(i = 0 ; i < dx ;i++) {
+  			  if(nombre.equals(x[i].getAmat())) {
+  				  return x[i];
+  				}
+  			}		
+  		}
+  		return null;
+  	}
+  	public int[] buscarPosAlumnoxAMaterno(String nombre) {
+  		int dx,i;
+  		dx = x.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(nombre.equals(x[i].getAmat())) {
+  					return x[i];
+  				}
+  			}		
+  		}
+  		return null;
+  	}
+  	public Alumno[] buscarAlumnoxAPaterno(Alumno a[], String nombre) {
+  		int dx,i;
+  		dx = a.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(nombre.equals(a[i].getApat())) {
+  					return a[i];
+  				}
+  			}		
+  		}
+  		return null;
+  	}
+  	public int[] buscarPosAlumnoxAPaterno(Alumno a[], String nombre) {
+  		int dx,i;
+  		dx = a.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(nombre.equals(a[i].getApat())) {
+  					return a[i];
+  				}
+  			}		
+  		}
+  		return null;
+  	}
+  	public Alumno[] buscarAlumnoxAMaterno(Alumno a[], String nombre) {
+  		int dx,i;
+  		dx = a.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(nombre.equals(a[i].getAmat())) {
+  					return a[i];
+  				}
+  			}		
+  		}
+  		return null;
+  	}
+  	public int[] buscarPosAlumnoxAMaterno(Alumno a[], String nombre) {
+  		int dx,i;
+  		dx = a.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(nombre.equals(a[i].getAmat())) {
+  					return a[i];
+  				}
+  			}		
+  		}
+  		return null;
+  	}
+  	public Alumno[] buscarAlumnoxNombre(Alumno a[], String nombre) {
 	  int dx,i;
 	  dx = a.length;
 	  if(dx == 0 ) {
@@ -267,6 +715,171 @@ public class VectorAlumno {
 		}
 		return null;
 	}
+  	public int[] buscarPosAlumnoxNombre(Alumno a[], String nombre) {
+  		int dx,i;
+  		dx = a.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(nombre.equals(a[i].getNombre())) {
+  					return a[i];
+  				}
+  			}		
+  		}
+  		return null;
+  	}
+  	public Alumno[] buscarAlumnoxNombre(String nombre) {
+  		int dx,i;
+  		dx = x.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(nombre.equals(x[i].getNombre())) {
+  					return x[i];
+  				}
+  			}		
+  		}
+  		return null;
+  	}
+  	public int[] buscarPosAlumnoxNombre(String nombre) {
+  		int dx,i;
+  		dx = x.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(nombre.equals(x[i].getNombre())) {
+  					return x[i];
+  				}
+  			}		
+  		}
+  		return null;
+  	}
+  	public Alumno[] buscarAlumnoxEdad(Alumno a[], int cod) {
+		int dx,i;
+		dx = a.length;
+		if(dx == 0 ) {
+			System.out.println("Vector vacio");
+		}
+		else {
+			for(i = 0 ; i < dx ;i++) {
+				if(cod == a[i].getEdad()) {
+					return a[i];
+				}
+			}
+		}
+		return null;
+	}
+  	public int[] buscarPosAlumnoxEdad(Alumno a[], int cod) {
+  		int dx,i;
+  		dx = a.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(cod == a[i].getEdad()) {
+  					return a[i];
+  				}
+  			}
+  		}
+  		return null;
+  	}
+  	public Alumno[] buscarAlumnoxEdad(int cod) {
+  		int dx,i;
+  		dx = x.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(cod == x[i].getEdad()) {
+  					return x[i];
+  				}
+  			}
+  		}
+  		return null;
+  	}
+  	public int[] buscarPosAlumnoxEdad(int cod) {
+  		int dx,i;
+  		dx = x.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(cod == x[i].getEdad()) {
+  					return x[i];
+  				}
+  			}
+  		}
+  		return null;
+  	}
+  	public Alumno[] buscarAlumnoxSexo(Alumno a[], String nombre) {
+    	  int dx,i;
+    	  dx = a.length;
+    	  if(dx == 0 ) {
+    		  System.out.println("Vector vacio");
+    	  }
+    	  else {
+    		  for(i = 0 ; i < dx ;i++) {
+    			  if(nombre.equals(a[i].getSexo())) {
+    				  return a[i];
+    				}
+    			}		
+    		}
+    		return null;
+    	}
+  	public int[] buscarPosAlumnoxSexo(Alumno a[], String nombre) {
+  		int dx,i;
+  		dx = a.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(nombre.equals(a[i].getSexo())) {
+  					return a[i];
+  				}
+  			}		
+  		}
+  		return null;
+  	}
+  	public Alumno[] buscarAlumnoxSexo(String nombre) {
+  		int dx,i;
+  		dx = x.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(nombre.equals(x[i].getSexo())) {
+  					return x[i];
+  				}
+  			}		
+  		}
+  		return null;
+  	}
+  	public int[] buscarPosAlumnoxSexo(String nombre) {
+  		int dx,i;
+  		dx = x.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(nombre.equals(x[i].getSexo())) {
+  					return x[i];
+  				}
+  			}		
+  		}
+  		return null;
+  	}
 	public Alumno buscarAlumnoxCod(Alumno a[], int cod) {
 		int dx,i;
 		dx = a.length;
@@ -282,7 +895,52 @@ public class VectorAlumno {
 		}
 		return null;
 	}
-	public Alumno buscarAlumnoxNota(Alumno a[], int nota) {
+	public int buscarPosAlumnoxCod(Alumno a[], int cod) {
+		int dx,i;
+		dx = a.length;
+		if(dx == 0 ) {
+			System.out.println("Vector vacio");
+		}
+		else {
+			for(i = 0 ; i < dx ;i++) {
+				if(cod == a[i].getCod()) {
+					return i;
+				}
+			}
+		}
+		return 0;
+	}
+	public Alumno buscarAlumnoxCod(int cod) {
+		int dx,i;
+		dx = x.length;
+		if(dx == 0 ) {
+			System.out.println("Vector vacio");
+		}
+		else {
+			for(i = 0 ; i < dx ;i++) {
+				if(cod == x[i].getCod()) {
+					return x[i];
+				}
+			}
+		}
+		return null;
+	}
+	public int buscarPosAlumnoxCod(int cod) {
+		int dx,i;
+		dx = x.length;
+		if(dx == 0 ) {
+			System.out.println("Vector vacio");
+		}
+		else {
+			for(i = 0 ; i < dx ;i++) {
+				if(cod == x[i].getCod()) {
+					return i;
+				}
+			}
+		}
+		return 0;
+	}
+	public Alumno[] buscarAlumnoxNota(Alumno a[], int nota) {
 		int dx,i;
 		dx = a.length;
 		if(dx == 0 ) {
@@ -297,7 +955,52 @@ public class VectorAlumno {
 		}
 		return null;
 	}
-	public Alumno buscarAlumnoxEstado(Alumno a[], boolean estado) {
+	public int[] buscarPosAlumnoxNota(Alumno a[], int nota) {
+		int dx,i;
+		dx = a.length;
+		if(dx == 0 ) {
+			System.out.println("Vector vacio");
+		}
+		else {
+			for(i = 0 ; i < dx ;i++) {
+				if(nota == a[i].getNota()) {
+					return a[i];
+				}
+			}
+		}
+		return null;
+	}
+	public Alumno[] buscarAlumnoxNota(int nota) {
+		int dx,i;
+		dx = x.length;
+		if(dx == 0 ) {
+			System.out.println("Vector vacio");
+		}
+		else {
+			for(i = 0 ; i < dx ;i++) {
+				if(nota == x[i].getNota()) {
+					return x[i];
+				}
+			}
+		}
+		return null;
+	}
+	public int[] buscarPosAlumnoxNota(int nota) {
+		int dx,i;
+		dx = x.length;
+		if(dx == 0 ) {
+			System.out.println("Vector vacio");
+		}
+		else {
+			for(i = 0 ; i < dx ;i++) {
+				if(nota == x[i].getNota()) {
+					return x[i];
+				}
+			}
+		}
+		return null;
+	}
+	public Alumno[] buscarAlumnoxEstado(Alumno a[], boolean estado) {
 		int dx,i;
 		dx = a.length;
 		if(dx == 0 ) {
@@ -307,6 +1010,51 @@ public class VectorAlumno {
 			for(i = 0 ; i < dx ;i++) {
 				if(estado == a[i].getEstado()) {
 					return a[i];
+				}
+			}
+		}
+		return null;
+	}
+	public int[] buscarPosAlumnoxEstado(Alumno a[], boolean estado) {
+		int dx,i;
+		dx = a.length;
+		if(dx == 0 ) {
+			System.out.println("Vector vacio");
+		}
+		else {
+			for(i = 0 ; i < dx ;i++) {
+				if(estado == a[i].getEstado()) {
+					return a[i];
+				}
+			}
+		}
+		return null;
+	}
+	public Alumno[] buscarAlumnoxEstado(boolean estado) {
+		int dx,i;
+		dx = x.length;
+		if(dx == 0 ) {
+			System.out.println("Vector vacio");
+		}
+		else {
+			for(i = 0 ; i < dx ;i++) {
+				if(estado == x[i].getEstado()) {
+					return x[i];
+				}
+			}
+		}
+		return null;
+	}
+	public int[] buscarPosAlumnoxEstado(boolean estado) {
+		int dx,i;
+		dx = x.length;
+		if(dx == 0 ) {
+			System.out.println("Vector vacio");
+		}
+		else {
+			for(i = 0 ; i < dx ;i++) {
+				if(estado == x[i].getEstado()) {
+					return x[i];
 				}
 			}
 		}
@@ -342,30 +1090,38 @@ public class VectorAlumno {
 		String nombre;
 		float nota;
 		boolean estado;
-		if(opc == 1) {
-			flag = true;
-		}
-		if(opc == 2 || flag) {
-			System.out.print("Codigo ---> ");
-			codigo = Leer.datoInt();
-			edit.setCod(codigo);
-		}
-		if(opc == 3 || flag) {
-			System.out.print("Nombre ---> ");
-			nombre=Leer.dato();
-			edit.setNombre(nombre);
-		}
-		if(opc == 4 || flag) {
-			System.out.print("Nota   ---> ");
-			nota = Leer.datoFloat();
-			edit.setNota(nota);
-		}
-		if(opc == 5 || flag) {
-			System.out.print("Estado   ---> ");
-			estado = Leer.datoBoolean();
-			edit.setEstado(estado);
-		}
+		Alumno temp = new Alumno();
+		do {
+			if(opc == 1) {
+				flag = true;
+			}
+			if(opc == 2 || flag) {
+				System.out.print("Codigo ---> ");
+				codigo = Leer.datoInt();
+				temp.setCod(codigo);
+			}
+			if(opc == 3 || flag) {
+				System.out.print("Nombre ---> ");
+				nombre=Leer.dato();
+				temp.setNombre(nombre);
+			}
+			if(opc == 4 || flag) {
+				System.out.print("Nota   ---> ");
+				nota = Leer.datoFloat();
+				temp.setNota(nota);
+			}
+			if(opc == 5 || flag) {
+				System.out.print("Estado   ---> ");
+				estado = Leer.datoBoolean();
+				temp.setEstado(estado);
+			}
+			System.out.println("Esta seguro de editar? Si[1] No[2]: ");
+			opc = Leer.datoInt();	
+		}while(opc == 1 || opc ==2);
 		return edit;
+	}
+	public int getDimension() {
+		return this.x.length;
 	}
 	
 }

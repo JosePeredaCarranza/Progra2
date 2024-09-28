@@ -8,7 +8,7 @@
 * @date: 10 set. 2024
 * @version 1
 */
-package Clases;
+package Clases.Progra2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
