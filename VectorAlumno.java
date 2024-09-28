@@ -25,20 +25,26 @@ public class VectorAlumno {
 		i = x.length;
 		Alumno a = new Alumno();
 		redimensionar1();
-		a.leerAlumno();
+		a.leerPersona();
+		x[i] = a;
+	}
+	public void agregarAlumno(Alumno a){
+		int i;
+		i = x.length;
+		redimensionar1();
 		x[i] = a;
 	}
 
 	public Alumno[] leerVector(){
 		int i,n;
-		Alumno a = new Alumno();
 		System.out.print("Numero de alumnos para el vector ---> ");
 		n = Leer.datoInt();
 		Alumno v[]=new Alumno[n];
 
 		for(i=0;i<n;i=i+1){
 			System.out.println("Alumno "+(i+1)+": ");
-			a.leerAlumno();
+			Alumno a = new Alumno();
+			a.leerPersona();
 			v[i]=a;
 		}
 		return v;
@@ -73,7 +79,8 @@ public class VectorAlumno {
 	public void mostrarVector(){
 		if(x.length > 0){
 			for(int i=0;i<x.length;i=i+1){
-				System.out.printf("%4d %-15d %6s %-10f %10b\n", i + 1, x[i].getCod(), x[i].getNom(), x[i].getNota(), x[i].getEstado());
+				System.out.printf("%3d",i+1);
+				System.out.println(x[i]);
 			}
 		}
 		else{
@@ -85,8 +92,9 @@ public class VectorAlumno {
 		if(v.length > 0){
 			encabezado1();
 			encabezado2();
-			for(int i = 0; i < v.length - 1 ; i++){
-				System.out.printf("%4d %-15d %6s %-10f %10b\n", i + 1, x[i].getCod(), x[i].getNom(), x[i].getNota(), x[i].getEstado());
+			for(int i = 0; i < v.length ; i++){
+				System.out.printf("%3d",i+1);
+				System.out.println(v[i]);
 			}
 			raya1();
 		}
@@ -97,7 +105,7 @@ public class VectorAlumno {
 
 	public void raya1(){
 		int i;
-		for(i=0;i<40;){
+		for(i=0;i<200;){
 		System.out.print("-");
 		i=i+1;
 		}
@@ -105,7 +113,7 @@ public class VectorAlumno {
 	}
 	public void raya2(){
 		int i;
-		for(i=0;i<40;){
+		for(i=0;i<200;){
 		System.out.print("=");
 		i=i+1;
 		}
@@ -114,16 +122,21 @@ public class VectorAlumno {
 
 	public void encabezado1(){
 		String t1="RELACION DE ALUMNOS";
-		System.out.printf("\t\t%s\n",t1);
+		System.out.printf("\t\t\t\t\t\t\t%s\n",t1);
 	}
 	public void encabezado2(){
 		String s1="No";
-		String s2="CODIGO";
-		String s3="NOMBRE";
-		String s4="NOTA";
-		String s5="ESTADO";
+		String s2="DNI";
+		String s3="A.Paterno";
+		String s4="A.Materno";
+		String s5="Edad";
+		String s6="Sexo";
+		String s7="CODIGO";
+		String s8="NOMBRE";
+		String s9="NOTA";
+		String s10="ESTADO";
 		raya2();
-		System.out.printf("%3s %8s %12s %10s %14s\n",s1,s2,s3,s4,s5);
+		System.out.printf("%5s %8s %12s %10s %14s %18s %22s %26s %30s %34s\n",s1,s2,s3,s4,s5,s6,s7,s8,s9,s10);
 		raya1();
 	}
 	@Override
@@ -131,7 +144,7 @@ public class VectorAlumno {
 		String cad="";
 		int dx=x.length;
 		for(int i=0;i<dx;){
-			cad=cad+String.format("%4d %-15d %6s %-10f %10b\n", i + 1, x[i].getCod(), x[i].getNom(), x[i].getNota(), x[i].getEstado());
+			cad=cad+String.format("%4d %-15d %6s %-10f %10b\n", i + 1, x[i].getCod(), x[i].getNombre(), x[i].getNota(), x[i].getEstado());
 			i=i+1;
 		}
 		return(cad);
@@ -169,7 +182,7 @@ public class VectorAlumno {
       int i = low - 1;
 
       for (int j = low; j < high; j++) {
-          if (arr[j].getNom().compareTo(pivot.getNom()) <= 0) {
+          if (arr[j].getNombre().compareTo(pivot.getNombre()) <= 0) {
               i++;
               Alumno temp = arr[i];
               arr[i] = arr[j];
@@ -247,7 +260,7 @@ public class VectorAlumno {
 	  }
 	  else {
 		  for(i = 0 ; i < dx ;i++) {
-			  if(nombre.equals(a[i].getNom())) {
+			  if(nombre.equals(a[i].getNombre())) {
 				  return a[i];
 				}
 			}		
@@ -340,7 +353,7 @@ public class VectorAlumno {
 		if(opc == 3 || flag) {
 			System.out.print("Nombre ---> ");
 			nombre=Leer.dato();
-			edit.setNom(nombre);
+			edit.setNombre(nombre);
 		}
 		if(opc == 4 || flag) {
 			System.out.print("Nota   ---> ");

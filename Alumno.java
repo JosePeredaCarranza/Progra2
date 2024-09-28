@@ -11,34 +11,16 @@
 package Clases;
 
 
-public class Alumno {
+public class Alumno extends Persona{
 	private int cod;
-	private String nom;
-	private float nota;
+	private double nota;
 	private boolean estado;
 	public Alumno(){
+		super();
 	}
-	public Alumno(int vcod){
+	public Alumno(String dni,String apat,String amat,String nombre,int edad,String sexo,int vcod, double vnota, boolean vestado) {
+		super(dni,apat,amat,nombre,edad,sexo);
 		cod=vcod;
-		nom=null;
-		nota=0.0F;
-		estado = true;
-	}
-	public Alumno(int vcod, String vnom){
-		cod=vcod;
-		nom=vnom;
-		nota=0.0F;
-		estado = true;
-	}
-	public Alumno(int vcod, String vnom, float vnota) {
-		cod=vcod;
-		nom=vnom;
-		nota=vnota;
-		estado = true;
-   }
-	public Alumno(int vcod, String vnom, float vnota, boolean vestado) {
-		cod=vcod;
-		nom=vnom;
 		nota=vnota;
 		estado = vestado;
 	}
@@ -46,10 +28,7 @@ public class Alumno {
    public void setCod(int vcod){
    	cod=vcod;
    }
-   public void setNom(String vnom){
-   	nom=vnom;
-   }
-   public void setNota(float vnota){
+   public void setNota(double vnota){
    	nota=vnota;
    }
    public void setEstado(boolean vestado){
@@ -59,47 +38,44 @@ public class Alumno {
    public int getCod(){
    	return cod;
    }
-   public String getNom(){
-   	return nom;
-   }
-   public float getNota(){
+   public double getNota(){
    	return nota;
    }
    public boolean getEstado(){
    	return estado;
    }
-   public Alumno leerAlumno(){
-		int codigo;
-		String nombre;
-		float nota;
-		boolean estado;
-		Alumno a=new Alumno();
-		System.out.print("Codigo ---> ");
-		codigo=Leer.datoInt();
-		a.setCod(codigo);
-
-		System.out.print("Nombre ---> ");
-		nombre=Leer.dato();
-		a.setNom(nombre);
-
-		System.out.print("Nota   ---> ");
-		nota=Leer.datoFloat();
-		a.setNota(nota);
+   public Persona leerPersona(){
+	   super.leerPersona();
+	   int codigo;
+	   double nota;
+	   boolean estado;
+	   System.out.print("Codigo ---> ");
+	   codigo=Leer.datoInt();
+	   setCod(codigo);
+	   
+	   System.out.print("Nota   ---> ");
+	   nota=Leer.datoDouble();
+	   setNota(nota);
 		
-		System.out.print("Estado   ---> ");
-		estado=Leer.datoBoolean();
-		a.setEstado(estado);
-		return a;
+	   System.out.print("Estado   ---> ");
+	   estado=Leer.datoBoolean();
+	   setEstado(estado);
+	   return (this);
 	}
    public void mostrarAlu(){
-   	System.out.printf("%6d %-15s%10.1f%14b\n",cod,nom,nota,estado);
+	   super.mostrarPersona();
+	   System.out.println("Codigo     : " + cod);
+		System.out.println("Nota       : " + nota);
+		System.out.println("Estado     : " + estado);
    }
    public void mostrarAlu(Alumno x){
-   	System.out.println(x.toString());
+	   super.mostrarPersona();
+	   System.out.println(x.toString());
    }
    public String toString(){
-   	String cad=null;
-   	cad=String.format("%6d %-15s%10.1f%14b\n",cod,nom,nota,estado);
-   	return(cad);
+	   String cad=null;
+	   String superclase = super.toString();
+	   cad=String.format(" %s %6d %10.1f%14b\n",superclase,cod,nota,estado);
+	   return(cad);
    }
 }
