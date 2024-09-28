@@ -1,104 +1,81 @@
 /**
-* nombreClase: Administrativo.java
-* descripción:
+* nombreClase : Administrativo.java
+* descripción :
 *
 *
-* @autores PEREDA CARRANZA, Jose Carlos Enrique
-* 			  ARAUJO TEJADA, Gustavo Reinaldo
-* @date: 10 set. 2024
+* @autor HUANACUNI GOMEZ, Jean Carlos Josue
+* @date: 24-09-2024
 * @version 1
 */
-package Clases;
+package proEntregable02;
 
-public class Administrativo {
-	private String nombre;
-	private int id;
-	private String cargo;
-	private String email;
-	public Administrativo(){
-	}
-	public Administrativo(String nombre){
-		this.nombre = nombre;
-		id = 0;
-		cargo = null;
-		email = null;
-	}
-	public Administrativo(String nombre, int id){
-		this.nombre = nombre;
-		this.id = id;
-		cargo = null;
-		email = null;
-	}
-	public Administrativo(String nombre, int id, String cargo){
-		this.nombre = nombre;
-		this.id = id;
-		this.cargo = cargo;
-		email = null;
-	}
-	public Administrativo(String nombre, int id, String cargo, String email){
-		this.nombre = nombre;
-		this.id = id;
-		this.cargo = cargo;
-		this.email = email;
-	}
-	//Setters
-	public void setNombre(String nombre){
-		this.nombre = nombre;
-	}
-	public void setId(int id){
-   	this.id = id;
-   }
-	public void setCargo(String cargo){
-	   this.cargo = cargo;
-	}
-	public void setEmail(String email){
-	   this.email = email;
-	}
-	//Getters
-	public String getNombre(){
-		return nombre;
-	}
-	public int getId(){
-		return id;
-	}
-	public String getCargo(){
-		return cargo;
-	}
-	public String getEmail(){
-		return email;
-	}
-	public Administrativo leerAdministrativo(){
-		String nombre;
-		int id;
-		String cargo;
-		String email;
-		Administrativo a=new Administrativo();
-		System.out.print("Nombre ---> ");
-		nombre = Leer.dato();
-		a.setNombre(nombre);
+public class Administrativo extends Persona{
+	private int codAdm;
+	private String area;
+	private float pago;
 
-		System.out.print("Identificación ---> ");
-		id=Leer.datoInt();
-		a.setId(id);
 
-		System.out.print("Cargo   ---> ");
-		cargo = Leer.dato();
-		a.setCargo(cargo);
-		
-		System.out.print("Email   ---> ");
-		email = Leer.dato();
-		a.setEmail(email);
-		return a;
+	public Administrativo() {
+		super();
 	}
-	public void mostrarAdministrativo(){
-	   System.out.printf("%6s %-15d%10s%14s\n",nombre,id,cargo,email);
+	public Administrativo(String vdni, String vapat,String vamat, String vnom, int vedad, String vsexo, int vcodAdm, String vArea, float vpago){
+	   super(vdni, vapat,vamat, vnom, vedad, vsexo);
+	   codAdm=vcodAdm;
+	   area=vArea;
+	   pago=vpago;
 	}
-	public void mostrarAdministrativo(Administrativo x){
-	   System.out.println(x.toString());
+	void setCodAdm(int vcodAdm){
+	   codAdm=vcodAdm;
+	}
+	void setArea(String varea){
+	   area=varea;
+	}
+	void setPago(float vpago){
+	   pago=vpago;
+	}
+
+	public int getCodAdm(){
+		return codAdm;
+	}
+	public String getArea(){
+		return area;
+	}
+	public float getPago(){
+		return pago;
+	}
+
+	public Persona leerPersona(){
+		super.leerPersona();
+		int vcodAdm;
+		String vArea;
+		float vpago;
+
+		System.out.print("codigo de Adm.   : ");
+		vcodAdm= Leer.datoInt();
+		setCodAdm(vcodAdm);
+		System.out.print("area             : ");
+		vArea= Leer.dato();
+		setArea(vArea);
+		System.out.print("pago             : ");
+		vpago= Leer.datoFloat();
+		setPago(vpago);
+		return (this);
+	}
+
+	public void escribirPersona(){
+		super.escribirPersona();
+		System.out.printf("%10d %-15s %10.2f\n",codAdm,area,pago);
+	}
+
+	public void mostrarPersona(){
+		super.mostrarPersona();
+		System.out.println("codigoAdm  : " + codAdm);
+		System.out.println("area    : " + area);
+		System.out.printf("pago       : %10.1f\n", pago);
 	}
 	public String toString(){
-		String cad=null;
-	   cad=String.format("%6s %-15d%10s%14s\n",nombre,id,cargo,email);
-	   return(cad);
+		String cad="";
+		cad=super.toString()+String.format("%10d %-15s %10.2f\n",codAdm,area,pago);
+		return cad;
 	}
 }

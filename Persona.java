@@ -7,7 +7,7 @@
 * @date: 24-09-2024
 * @version 1
 */
-package Clases;
+package proEntregable02;
 
 public class Persona {
 	protected String dni;
@@ -85,27 +85,40 @@ public class Persona {
 		System.out.print("Edad       : ");
 		vedad= Leer.datoInt();
 		setEdad(vedad);
-		System.out.print("Sexo       : ");
+		System.out.print("Sexo        : ");
 		vsexo= Leer.dato();
 		setSexo(vsexo);
 
 		return(this);
    }
-   public void mostrarPersona(Persona x){
-	   System.out.println(x.toString());
+   public void escribirPersona(){
+   		System.out.printf("%8s %-15s %-15s %-15s %5d %-10s\n",dni,apat,amat,nombre,edad,sexo);
    }
-	public void mostrarPersona(){
-		System.out.println("DNI        : " + dni);
-		System.out.println("A. paterno : " + apat);
-		System.out.println("A. paterno : " + amat);
-		System.out.println("Nombre     : " + nombre);
-		System.out.println("Edad       : " + edad);
+   public void escribirPersona(Persona a){
+  		System.out.printf("%8s %-15s %-15s %-15s %5d %-10s\n",a.getDni(),a.getApat(),
+  				a.getAmat(),a.getNombre(),a.getEdad(),a.getSexo());
+   }
+  
+   public void mostrarPersona(){
+		System.out.println("dni        : " + dni);
+		System.out.println("a. paterno : " + apat);
+		System.out.println("a. paterno : " + amat);
+		System.out.println("nombre     : " + nombre);
+		System.out.println("edad       : " + edad);
 		System.out.printf("Sexo       : %s\n",sexo);
-	}
+   }
+   public void mostrarPersona(Persona a){
+		System.out.println("dni        : " + a.getDni());
+		System.out.println("a. paterno : " + a.getApat());
+		System.out.println("a. paterno : " + a.getAmat());
+		System.out.println("nombre     : " + a.getNombre());
+		System.out.println("edad       : " + a.getEdad());
+		System.out.printf("Sexo       : %s\n",a.getSexo());
+  }
 
-	public String toString(){
+  public String toString(){
 		String cad="";
-		cad=String.format("%12s %-15s %-15s %-15s %5d %-10s",dni,apat,amat,nombre,edad,sexo);
+		cad=String.format("%8s %-15s %-15s %-15s %5d %-10s",dni,apat,amat,nombre,edad,sexo);
 		return cad;
-	}
+  }
 }
