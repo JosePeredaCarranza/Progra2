@@ -1,11 +1,10 @@
 /**
-* nombreClase: Leer.java
-* descripción:
+* nombreClase : Leer.java
+* descripción :
 *
 *
-* @autores PEREDA CARRANZA, Jose Carlos Enrique
-* 			  ARAUJO TEJADA, Gustavo Reinaldo
-* @date: 10 set. 2024
+* @autor HUANACUNI GOMEZ, Jean Carlos Josue
+* @date: 28-09-2024
 * @version 1
 */
 package Clases.Progra2;
@@ -13,7 +12,8 @@ package Clases.Progra2;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-public class Leer {	
+
+public class Leer {
 	public static String dato(){
 		String sdato=" ";
 		try{
@@ -28,6 +28,7 @@ public class Leer {
 		}
 		return sdato;//devolver el dato tecleado
 	}
+	
 	public static int datoInt(){
 		try{
 			return Integer.parseInt(dato());
@@ -36,29 +37,35 @@ public class Leer {
 			return Integer.MAX_VALUE;//valor mas pequeno
 		}
 	}
-	public static float datoFloat() {
-	    try {
-	        return Float.parseFloat(dato());
-	    } catch (NumberFormatException e) {
-	        return Float.NaN; // No es un número: valor float especial
-	    }
+	
+	public static float datoFloat(){
+		try{
+			Float f=new Float(dato());
+			return f.floatValue();
+		}
+		catch(NumberFormatException e){
+			return Float.NaN;//no es un numero: valor double	
+		}
 	}
-	public static double datoDouble() {
-	    try {
-	        return Double.parseDouble(dato());
-	    } catch (NumberFormatException e) {
-	        return Double.NaN; // No es un número: valor double especial
-	    }
+	
+	public static double datoDouble(){
+		try{
+			Double d=new Double(dato());
+			return d.doubleValue();
+		}
+		catch(NumberFormatException e){
+			return Double.NaN;//no es un numero: valor double
+		}
 	}
 	public static boolean datoBoolean(){
-      while (true) {
-          String sdato = dato().toLowerCase();
-          if (sdato.equals("true") || sdato.equals("false")) {
-              return Boolean.parseBoolean(sdato);
-          } else {
-              System.out.println("Por favor, ingrese 'true' o 'false'.");
-          }
-      }
-  }
-	
+		while (true) {
+			String sdato = dato().toLowerCase();
+			if (sdato.equals("true") || sdato.equals("false")) {
+				return Boolean.parseBoolean(sdato);
+			} 
+			else {
+				System.out.println("Por favor, ingrese 'true' o 'false'.");
+			}
+		}
+	}
 }

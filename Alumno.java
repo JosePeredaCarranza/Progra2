@@ -1,20 +1,20 @@
 /**
-* nombreClase: Alumno.java
-* descripción:
+* nombreClase : Alumno.java
+* descripción :
 *
 *
-* @autores PEREDA CARRANZA, Jose Carlos Enrique
-* 			  ARAUJO TEJADA, Gustavo Reinaldo
-* @date: 10 set. 2024
-* @version 1
+* @autor HUANACUNI GOMEZ, Jean Carlos Josue
+* 		 PEREDA CARRANZA, Jose Carlos Enrique
+* @date: 28-09-2024
+* @version 2
 */
 package Clases.Progra2;
-
 
 public class Alumno extends Persona{
 	private int cod;
 	private double nota;
 	private boolean estado;
+	
 	public Alumno(){
 		super();
 	}
@@ -25,57 +25,57 @@ public class Alumno extends Persona{
 		estado = vestado;
 	}
 
-   public void setCod(int vcod){
-   	cod=vcod;
-   }
-   public void setNota(double vnota){
-   	nota=vnota;
-   }
-   public void setEstado(boolean vestado){
-   	estado = vestado;
-   }
-
-   public int getCod(){
-   	return cod;
-   }
-   public double getNota(){
-   	return nota;
-   }
-   public boolean getEstado(){
-   	return estado;
-   }
-   public Persona leerPersona(){
-	   super.leerPersona();
-	   int codigo;
-	   double nota;
-	   boolean estado;
-	   System.out.print("Codigo ---> ");
-	   codigo=Leer.datoInt();
-	   setCod(codigo);
-	   
-	   System.out.print("Nota   ---> ");
-	   nota=Leer.datoDouble();
-	   setNota(nota);
-		
-	   System.out.print("Estado   ---> ");
-	   estado=Leer.datoBoolean();
-	   setEstado(estado);
-	   return (this);
+	public void setCod(int vcod){
+		cod=vcod;
 	}
-   public void mostrarAlu(){
-	   super.mostrarPersona();
-	   System.out.println("Codigo     : " + cod);
+	public void setNota(double vnota){
+		nota=vnota;
+	}
+	public void setEstado(boolean vestado){
+		estado = vestado;
+	}
+	
+	public int getCod(){
+		return cod;
+	}
+	public double getNota(){
+		return nota;
+	}
+	public boolean getEstado(){
+		return estado;
+	}
+	public Persona leerPersona(){
+		super.leerPersona();
+		int codigo;
+		double nota;
+		boolean estado;
+		System.out.print("Codigo ---> ");
+		codigo=Leer.datoInt();
+		setCod(codigo);
+	   
+		System.out.print("Nota   ---> ");
+		nota=Leer.datoDouble();
+		setNota(nota);
+		
+		System.out.print("Estado   ---> ");
+		estado=Leer.datoBoolean();
+		setEstado(estado);
+		return (this);
+	}
+	public void mostrarAlu(){
+		super.mostrarPersona();
+		System.out.println("Codigo     : " + cod);
 		System.out.println("Nota       : " + nota);
 		System.out.println("Estado     : " + estado);
-   }
-   public void mostrarAlu(Alumno x){
-	   super.mostrarPersona();
-	   System.out.println(x.toString());
-   }
-   public String toString(){
-	   String cad=null;
-	   String superclase = super.toString();
-	   cad=String.format(" %s %6d %10.1f%14b\n",superclase,cod,nota,estado);
-	   return(cad);
-   }
+	}
+	public void mostrarAlu(Alumno x){
+		super.mostrarPersona();
+		System.out.println(x.toString());
+	}
+	public String toString(){
+		String cad=null;
+		String superclase = super.toString();
+		cad=String.format(" %s %6d %10.1f%14b\n",superclase,cod,nota,estado);
+		return(cad);
+	}
 }

@@ -4,8 +4,9 @@
 *
 *
 * @autor HUANACUNI GOMEZ, Jean Carlos Josue
+* 		 PEREDA CARRANZA, Jose Carlos Enrique
 * @date: 28-09-2024
-* @version 1
+* @version 2
 */
 package Clases.Progra2;
 

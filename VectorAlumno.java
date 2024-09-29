@@ -3,8 +3,8 @@
 * descripción:
 *
 *
-* @autores PEREDA CARRANZA, Jose Carlos Enrique
-* 			HUANACUNI GOMEZ, Jean Carlos Josue
+* @autores HUANACUNI GOMEZ, Jean Carlos Josue
+* 		   PEREDA CARRANZA, Jose Carlos Enrique
 * @date: 27 set. 2024
 * @version 2
 */

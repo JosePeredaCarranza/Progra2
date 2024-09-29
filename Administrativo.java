@@ -4,16 +4,16 @@
 *
 *
 * @autor HUANACUNI GOMEZ, Jean Carlos Josue
-* @date: 24-09-2024
-* @version 1
+* 		 PEREDA CARRANZA, Jose Carlos Enrique
+* @date: 28-09-2024
+* @version 2
 */
 package Clases.Progra2;
 
-public class Administrativo extends Persona{
+public class Administrativo extends Persona {
 	private int codAdm;
 	private String area;
 	private float pago;
-
 
 	public Administrativo() {
 		super();
@@ -61,17 +61,15 @@ public class Administrativo extends Persona{
 		setPago(vpago);
 		return (this);
 	}
-
 	public void escribirPersona(){
 		super.escribirPersona();
 		System.out.printf("%10d %-15s %10.2f\n",codAdm,area,pago);
 	}
-
 	public void mostrarPersona(){
 		super.mostrarPersona();
 		System.out.println("codigoAdm  : " + codAdm);
 		System.out.println("area    : " + area);
-		System.out.printf("pago       : %10.1f\n", pago);
+		System.out.printf("pago       : %10.2f\n", pago);
 	}
 	public String toString(){
 		String cad="";
