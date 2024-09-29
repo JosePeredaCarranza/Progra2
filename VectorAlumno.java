@@ -1312,7 +1312,7 @@ public class VectorAlumno {
 				case 5:
 					System.out.printf("\nNUEVA edad ---> ");
 					vedad= Leer.datoInt();
-					temp.setCod(vedad);
+					temp.setEdad(vedad);
 					break;
 				case 6:
 					System.out.printf("\nNUEVO sexo ---> ");
