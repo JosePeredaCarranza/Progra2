@@ -10,9 +10,6 @@
 */
 package Clases.Progra2;
 
-import paqProyecFinal.Aula;
-import paqProyecFinal.Leer;
-
 public class VectorAlumno {
 	private Alumno x[];
 
@@ -753,7 +750,6 @@ public class VectorAlumno {
   	}
   	
   	
-  	
   	public VectorAlumno buscarAlumnoxNombre(Alumno a[], String dato) {
   		int dx,i;
   		VectorAlumno result = new VectorAlumno();
@@ -769,356 +765,468 @@ public class VectorAlumno {
   			}		
   		}
   		return result;
-	}
-  	
-  	public int[] buscarPosAlumnoxNombre(Alumno a[], String nombre) {
+	}	
+  	public int[] buscarPosAlumnoxNombre(Alumno a[], String dato) {
+  		int i,j; 
+  		if (a == null || a.length == 0) {
+             System.out.println("Vector vacío");
+             return new int[0];
+  		}
+  		int[] temp = new int[a.length];
+  		j = 0;
+  		for (i = 0; i < a.length; i++) {
+  			if (dato.equals(a[i].getNombre())){
+  				temp[j] = i;
+  				j=j+1;
+  			}
+  		}
+  		if (j == 0) {
+  			return new int[0];
+  		} 
+  		int[] result = new int[j];
+  		for (i = 0; i < j; i++) {
+  			result[i] = temp[i]; 
+  		}
+  		return result;
+  	}
+  	public VectorAlumno buscarAlumnoxNombre(String dato) {
   		int dx,i;
+  		VectorAlumno result = new VectorAlumno();
+  		dx = x.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(dato.equals(x[i].getNombre())) {
+  					result.agregarAlumno(x[i]);
+  				}
+  			}		
+  		}
+  		return result;
+  	}
+  	public int[] buscarPosAlumnoxNombre(String dato) {
+  		int i,j; 
+  		if (x == null || x.length == 0) {
+             System.out.println("Vector vacío");
+             return new int[0];
+         }
+         int[] temp = new int[x.length];
+         j = 0;
+
+         for (i = 0; i < x.length; i++) {
+             if (dato.equals(x[i].getNombre())){
+                 temp[j] = i;
+                 j=j+1;
+             }
+         }
+         if (j == 0) {
+             return new int[0];
+         }
+         
+         int[] result = new int[j];
+         for (i = 0; i < j; i++) {
+             result[i] = temp[i]; 
+         }
+         return result;
+  	}
+  	
+  	
+  	public VectorAlumno buscarAlumnoxEdad(Alumno a[], int dato) {
+  		int dx,i;
+  		VectorAlumno result = new VectorAlumno();
   		dx = a.length;
   		if(dx == 0 ) {
   			System.out.println("Vector vacio");
   		}
   		else {
   			for(i = 0 ; i < dx ;i++) {
-  				if(nombre.equals(a[i].getNombre())) {
-  					return a[i];
+  				if(dato == a[i].getEdad()){
+  					result.agregarAlumno(a[i]);
   				}
   			}		
   		}
-  		return null;
-  	}
-  	public VectorAlumno buscarAlumnoxNombre(String nombre) {
-  		int dx,i;
-  		dx = x.length;
-  		if(dx == 0 ) {
-  			System.out.println("Vector vacio");
-  		}
-  		else {
-  			for(i = 0 ; i < dx ;i++) {
-  				if(nombre.equals(x[i].getNombre())) {
-  					return x[i];
-  				}
-  			}		
-  		}
-  		return null;
-  	}
-  	public int[] buscarPosAlumnoxNombre(String nombre) {
-  		int dx,i;
-  		dx = x.length;
-  		if(dx == 0 ) {
-  			System.out.println("Vector vacio");
-  		}
-  		else {
-  			for(i = 0 ; i < dx ;i++) {
-  				if(nombre.equals(x[i].getNombre())) {
-  					return x[i];
-  				}
-  			}		
-  		}
-  		return null;
-  	}
-  	
-  	
-  	
-  	
-  	public Alumno[] buscarAlumnoxEdad(Alumno a[], int cod) {
-		int dx,i;
-		dx = a.length;
-		if(dx == 0 ) {
-			System.out.println("Vector vacio");
-		}
-		else {
-			for(i = 0 ; i < dx ;i++) {
-				if(cod == a[i].getEdad()) {
-					return a[i];
-				}
-			}
-		}
-		return null;
+  		return result;
 	}
-  	public int[] buscarPosAlumnoxEdad(Alumno a[], int cod) {
+  	public int[] buscarPosAlumnoxEdad(Alumno a[], int dato) {
+  		int i,j; 
+  		if (a == null || a.length == 0) {
+             System.out.println("Vector vacío");
+             return new int[0];
+  		}
+  		int[] temp = new int[a.length];
+  		j = 0;
+  		for (i = 0; i < a.length; i++) {
+  			if (dato == a[i].getEdad()){
+  				temp[j] = i;
+  				j=j+1;
+  			}
+  		}
+  		if (j == 0) {
+  			return new int[0];
+  		} 
+  		int[] result = new int[j];
+  		for (i = 0; i < j; i++) {
+  			result[i] = temp[i]; 
+  		}
+  		return result;
+  	}
+  	public VectorAlumno buscarAlumnoxEdad(int dato) {
   		int dx,i;
+  		VectorAlumno result = new VectorAlumno();
+  		dx = x.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(dato == x[i].getEdad()){
+  					result.agregarAlumno(x[i]);
+  				}
+  			}		
+  		}
+  		return result;
+  	}
+  	public int[] buscarPosAlumnoxEdad(int dato) {
+  		int i,j; 
+  		if (x == null || x.length == 0) {
+             System.out.println("Vector vacío");
+             return new int[0];
+         }
+         int[] temp = new int[x.length];
+         j = 0;
+
+         for (i = 0; i < x.length; i++) {
+             if (dato == x[i].getEdad()){
+                 temp[j] = i;
+                 j=j+1;
+             }
+         }
+         if (j == 0) {
+             return new int[0];
+         }
+         
+         int[] result = new int[j];
+         for (i = 0; i < j; i++) {
+             result[i] = temp[i]; 
+         }
+         return result;
+  	}
+  	
+  	
+  	public VectorAlumno buscarAlumnoxSexo(Alumno a[], String dato) {
+  		int dx,i;
+  		VectorAlumno result = new VectorAlumno();
   		dx = a.length;
   		if(dx == 0 ) {
   			System.out.println("Vector vacio");
   		}
   		else {
   			for(i = 0 ; i < dx ;i++) {
-  				if(cod == a[i].getEdad()) {
-  					return a[i];
+  				if(dato.equals(a[i].getSexo())) {
+  					result.agregarAlumno(a[i]);
   				}
+  			}		
+  		}
+  		return result;
+  	}
+  	public int[] buscarPosAlumnoxSexo(Alumno a[], String dato) {
+  		int i,j; 
+  		if (a == null || a.length == 0) {
+             System.out.println("Vector vacío");
+             return new int[0];
+  		}
+  		int[] temp = new int[a.length];
+  		j = 0;
+  		for (i = 0; i < a.length; i++) {
+  			if (dato.equals(a[i].getSexo())){
+  				temp[j] = i;
+  				j=j+1;
   			}
   		}
-  		return null;
+  		if (j == 0) {
+  			return new int[0];
+  		} 
+  		int[] result = new int[j];
+  		for (i = 0; i < j; i++) {
+  			result[i] = temp[i]; 
+  		}
+  		return result;
   	}
-  	public Alumno[] buscarAlumnoxEdad(int cod) {
+  	public VectorAlumno buscarAlumnoxSexo(String dato) {
   		int dx,i;
+  		VectorAlumno result = new VectorAlumno();
   		dx = x.length;
   		if(dx == 0 ) {
   			System.out.println("Vector vacio");
   		}
   		else {
   			for(i = 0 ; i < dx ;i++) {
-  				if(cod == x[i].getEdad()) {
-  					return x[i];
+  				if(dato.equals(x[i].getSexo())) {
+  					result.agregarAlumno(x[i]);
   				}
-  			}
+  			}		
   		}
-  		return null;
+  		return result;
   	}
-  	public int[] buscarPosAlumnoxEdad(int cod) {
-  		int dx,i;
-  		dx = x.length;
-  		if(dx == 0 ) {
-  			System.out.println("Vector vacio");
-  		}
-  		else {
-  			for(i = 0 ; i < dx ;i++) {
-  				if(cod == x[i].getEdad()) {
-  					return x[i];
-  				}
-  			}
-  		}
-  		return null;
+  	public int[] buscarPosAlumnoxSexo(String dato) {
+  		int i,j; 
+  		if (x == null || x.length == 0) {
+             System.out.println("Vector vacío");
+             return new int[0];
+         }
+         int[] temp = new int[x.length];
+         j = 0;
+
+         for (i = 0; i < x.length; i++) {
+             if (dato.equals(x[i].getSexo())){
+                 temp[j] = i;
+                 j=j+1;
+             }
+         }
+         if (j == 0) {
+             return new int[0];
+         }
+         
+         int[] result = new int[j];
+         for (i = 0; i < j; i++) {
+             result[i] = temp[i]; 
+         }
+         return result;
   	}
-  	public Alumno[] buscarAlumnoxSexo(Alumno a[], String nombre) {
-    	  int dx,i;
-    	  dx = a.length;
-    	  if(dx == 0 ) {
-    		  System.out.println("Vector vacio");
-    	  }
-    	  else {
-    		  for(i = 0 ; i < dx ;i++) {
-    			  if(nombre.equals(a[i].getSexo())) {
-    				  return a[i];
-    				}
-    			}		
-    		}
-    		return null;
-    	}
-  	public int[] buscarPosAlumnoxSexo(Alumno a[], String nombre) {
+	
+ 
+  	public Alumno buscarAlumnoxCod(Alumno a[], int dato) {
   		int dx,i;
   		dx = a.length;
   		if(dx == 0 ) {
   			System.out.println("Vector vacio");
   		}
   		else {
-  			for(i = 0 ; i < dx ;i++) {
-  				if(nombre.equals(a[i].getSexo())) {
+  			i=0;
+  			while(i<dx) {
+  				if(dato == a[i].getCod()) {
   					return a[i];
   				}
   			}		
   		}
   		return null;
-  	}
-  	public Alumno[] buscarAlumnoxSexo(String nombre) {
-  		int dx,i;
+	}
+	public int buscarPosAlumnoxCod(Alumno a[], int dato) {
+		int dx,i,pos;
+  		boolean hallado;
+  		hallado = false;
+  		dx = a.length;
+  		pos=-1;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			i=0;
+  			while(i<dx && !hallado) {
+  				if(dato == a[i].getCod()){
+  					pos=i;
+  					hallado=true;
+  				}
+  			}		
+  		}
+  		return pos;
+	}
+	public Alumno buscarAlumnoxCod(int dato) {
+		int dx,i;
+  		dx = x.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			i=0;
+  			while(i<dx) {
+  				if(dato == x[i].getCod()) {
+  					return x[i];
+  				}
+  			}		
+  		}
+  		return null;
+	}
+	public int buscarPosAlumnoxCod(int dato) {
+		int dx,i,pos;
+  		boolean hallado;
+  		hallado = false;
+  		dx = x.length;
+  		pos=-1;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			i=0;
+  			while(i<dx && !hallado) {
+  				if(dato == x[i].getCod()){
+  					pos=i;
+  					hallado=true;
+  				}
+  			}		
+  		}
+  		return pos;
+	}
+	
+
+	public VectorAlumno buscarAlumnoxNota(Alumno a[], double dato) {
+		int dx,i;
+  		VectorAlumno result = new VectorAlumno();
+  		dx = a.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(dato ==a[i].getNota()) {
+  					result.agregarAlumno(a[i]);
+  				}
+  			}		
+  		}
+  		return result;
+	}
+	public int[] buscarPosAlumnoxNota(Alumno a[], double dato) {
+		int i,j; 
+  		if (a == null || a.length == 0) {
+             System.out.println("Vector vacío");
+             return new int[0];
+  		}
+  		int[] temp = new int[a.length];
+  		j = 0;
+  		for (i = 0; i < a.length; i++) {
+  			if (dato == a[i].getNota()){
+  				temp[j] = i;
+  				j=j+1;
+  			}
+  		}
+  		if (j == 0) {
+  			return new int[0];
+  		} 
+  		int[] result = new int[j];
+  		for (i = 0; i < j; i++) {
+  			result[i] = temp[i]; 
+  		}
+  		return result;
+	}
+	public VectorAlumno buscarAlumnoxNota(double dato) {
+		int dx,i;
+  		VectorAlumno result = new VectorAlumno();
   		dx = x.length;
   		if(dx == 0 ) {
   			System.out.println("Vector vacio");
   		}
   		else {
   			for(i = 0 ; i < dx ;i++) {
-  				if(nombre.equals(x[i].getSexo())) {
-  					return x[i];
+  				if(dato == x[i].getNota()) {
+  					result.agregarAlumno(x[i]);
   				}
   			}		
   		}
-  		return null;
-  	}
-  	public int[] buscarPosAlumnoxSexo(String nombre) {
-  		int dx,i;
+  		return result;
+	}
+	public int[] buscarPosAlumnoxNota(double dato) {
+		int i,j; 
+  		if (x == null || x.length == 0) {
+             System.out.println("Vector vacío");
+             return new int[0];
+  		}
+  		int[] temp = new int[x.length];
+  		j = 0;
+  		for (i = 0; i < x.length; i++) {
+  			if (dato == x[i].getNota()){
+  				temp[j] = i;
+  				j=j+1;
+  			}
+  		}
+  		if (j == 0) {
+  			return new int[0];
+  		} 
+  		int[] result = new int[j];
+  		for (i = 0; i < j; i++) {
+  			result[i] = temp[i]; 
+  		}
+  		return result;
+	}
+	
+	
+	public VectorAlumno buscarAlumnoxEstado(Alumno a[], boolean dato) {
+		int dx,i;
+  		VectorAlumno result = new VectorAlumno();
+  		dx = a.length;
+  		if(dx == 0 ) {
+  			System.out.println("Vector vacio");
+  		}
+  		else {
+  			for(i = 0 ; i < dx ;i++) {
+  				if(dato == a[i].getEstado()) {
+  					result.agregarAlumno(a[i]);
+  				}
+  			}		
+  		}
+  		return result;
+	}
+	public int[] buscarPosAlumnoxEstado(Alumno a[], boolean dato) {
+		int i,j; 
+  		if (a == null || a.length == 0) {
+             System.out.println("Vector vacío");
+             return new int[0];
+  		}
+  		int[] temp = new int[a.length];
+  		j = 0;
+  		for (i = 0; i < a.length; i++) {
+  			if (dato == a[i].getEstado()){
+  				temp[j] = i;
+  				j=j+1;
+  			}
+  		}
+  		if (j == 0) {
+  			return new int[0];
+  		} 
+  		int[] result = new int[j];
+  		for (i = 0; i < j; i++) {
+  			result[i] = temp[i]; 
+  		}
+  		return result;
+	}
+	public VectorAlumno buscarAlumnoxEstado(boolean dato) {
+		int dx,i;
+  		VectorAlumno result = new VectorAlumno();
   		dx = x.length;
   		if(dx == 0 ) {
   			System.out.println("Vector vacio");
   		}
   		else {
   			for(i = 0 ; i < dx ;i++) {
-  				if(nombre.equals(x[i].getSexo())) {
-  					return x[i];
+  				if(dato == x[i].getEstado()) {
+  					result.agregarAlumno(x[i]);
   				}
   			}		
   		}
-  		return null;
-  	}
-	public Alumno buscarAlumnoxCod(Alumno a[], int cod) {
-		int dx,i;
-		dx = a.length;
-		if(dx == 0 ) {
-			System.out.println("Vector vacio");
-		}
-		else {
-			for(i = 0 ; i < dx ;i++) {
-				if(cod == a[i].getCod()) {
-					return a[i];
-				}
-			}
-		}
-		return null;
+  		return result;
 	}
-	public int buscarPosAlumnoxCod(Alumno a[], int cod) {
-		int dx,i;
-		dx = a.length;
-		if(dx == 0 ) {
-			System.out.println("Vector vacio");
-		}
-		else {
-			for(i = 0 ; i < dx ;i++) {
-				if(cod == a[i].getCod()) {
-					return i;
-				}
-			}
-		}
-		return 0;
-	}
-	public Alumno buscarAlumnoxCod(int cod) {
-		int dx,i;
-		dx = x.length;
-		if(dx == 0 ) {
-			System.out.println("Vector vacio");
-		}
-		else {
-			for(i = 0 ; i < dx ;i++) {
-				if(cod == x[i].getCod()) {
-					return x[i];
-				}
-			}
-		}
-		return null;
-	}
-	public int buscarPosAlumnoxCod(int cod) {
-		int dx,i;
-		dx = x.length;
-		if(dx == 0 ) {
-			System.out.println("Vector vacio");
-		}
-		else {
-			for(i = 0 ; i < dx ;i++) {
-				if(cod == x[i].getCod()) {
-					return i;
-				}
-			}
-		}
-		return 0;
-	}
-	public Alumno[] buscarAlumnoxNota(Alumno a[], int nota) {
-		int dx,i;
-		dx = a.length;
-		if(dx == 0 ) {
-			System.out.println("Vector vacio");
-		}
-		else {
-			for(i = 0 ; i < dx ;i++) {
-				if(nota == a[i].getNota()) {
-					return a[i];
-				}
-			}
-		}
-		return null;
-	}
-	public int[] buscarPosAlumnoxNota(Alumno a[], int nota) {
-		int dx,i;
-		dx = a.length;
-		if(dx == 0 ) {
-			System.out.println("Vector vacio");
-		}
-		else {
-			for(i = 0 ; i < dx ;i++) {
-				if(nota == a[i].getNota()) {
-					return a[i];
-				}
-			}
-		}
-		return null;
-	}
-	public Alumno[] buscarAlumnoxNota(int nota) {
-		int dx,i;
-		dx = x.length;
-		if(dx == 0 ) {
-			System.out.println("Vector vacio");
-		}
-		else {
-			for(i = 0 ; i < dx ;i++) {
-				if(nota == x[i].getNota()) {
-					return x[i];
-				}
-			}
-		}
-		return null;
-	}
-	public int[] buscarPosAlumnoxNota(int nota) {
-		int dx,i;
-		dx = x.length;
-		if(dx == 0 ) {
-			System.out.println("Vector vacio");
-		}
-		else {
-			for(i = 0 ; i < dx ;i++) {
-				if(nota == x[i].getNota()) {
-					return x[i];
-				}
-			}
-		}
-		return null;
-	}
-	public Alumno[] buscarAlumnoxEstado(Alumno a[], boolean estado) {
-		int dx,i;
-		dx = a.length;
-		if(dx == 0 ) {
-			System.out.println("Vector vacio");
-		}
-		else {
-			for(i = 0 ; i < dx ;i++) {
-				if(estado == a[i].getEstado()) {
-					return a[i];
-				}
-			}
-		}
-		return null;
-	}
-	public int[] buscarPosAlumnoxEstado(Alumno a[], boolean estado) {
-		int dx,i;
-		dx = a.length;
-		if(dx == 0 ) {
-			System.out.println("Vector vacio");
-		}
-		else {
-			for(i = 0 ; i < dx ;i++) {
-				if(estado == a[i].getEstado()) {
-					return a[i];
-				}
-			}
-		}
-		return null;
-	}
-	public Alumno[] buscarAlumnoxEstado(boolean estado) {
-		int dx,i;
-		dx = x.length;
-		if(dx == 0 ) {
-			System.out.println("Vector vacio");
-		}
-		else {
-			for(i = 0 ; i < dx ;i++) {
-				if(estado == x[i].getEstado()) {
-					return x[i];
-				}
-			}
-		}
-		return null;
-	}
-	public int[] buscarPosAlumnoxEstado(boolean estado) {
-		int dx,i;
-		dx = x.length;
-		if(dx == 0 ) {
-			System.out.println("Vector vacio");
-		}
-		else {
-			for(i = 0 ; i < dx ;i++) {
-				if(estado == x[i].getEstado()) {
-					return x[i];
-				}
-			}
-		}
-		return null;
+	public int[] buscarPosAlumnoxEstado(boolean dato) {
+		int i,j; 
+  		if (x == null || x.length == 0) {
+             System.out.println("Vector vacío");
+             return new int[0];
+  		}
+  		int[] temp = new int[x.length];
+  		j = 0;
+  		for (i = 0; i < x.length; i++) {
+  			if (dato == x[i].getEstado()){
+  				temp[j] = i;
+  				j=j+1;
+  			}
+  		}
+  		if (j == 0) {
+  			return new int[0];
+  		} 
+  		int[] result = new int[j];
+  		for (i = 0; i < j; i++) {
+  			result[i] = temp[i]; 
+  		}
+  		return result;
 	}
 	
 	//Eliminar alumno
