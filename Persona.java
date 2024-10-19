@@ -5,10 +5,10 @@
 *
 * @autor HUANACUNI GOMEZ, Jean Carlos Josue
 * 		 PEREDA CARRANZA, Jose Carlos Enrique
-* @date: 28-09-2024
+* @date: 18-10-2024
 * @version 1
 */
-package Clases.Progra2;
+package paqG01Proyectov3;
 
 public class Persona {
 	protected String dni;
@@ -70,10 +70,9 @@ public class Persona {
 		String vdni,vapat,vamat,vnom,vsexo;
 		int vedad;
 
-			System.out.print("D N I      : ");
+		System.out.print("D N I      : ");
 		vdni= Leer.dato();
 		setDni(vdni);
-		
 		System.out.print("A. Paterno : ");
 		vapat= Leer.dato();
 		setApat(vapat);
@@ -92,15 +91,15 @@ public class Persona {
 
 		return(this);
    }
-   	public void escribirPersona(){
-   		System.out.printf("%8s %-15s %-15s %-15s %5d %-10s\n",dni,apat,amat,nombre,edad,sexo);
+   public void escribirPersona(){
+   		System.out.printf("%8s %-15s %-15s %-15s %5d %-10s ",dni,apat,amat,nombre,edad,sexo);
    }
-   	public void escribirPersona(Persona a){
-  		System.out.printf("%8s %-15s %-15s %-15s %5d %-10s\n",a.getDni(),a.getApat(),
+   public void escribirPersona(Persona a){
+  		System.out.printf("%8s %-15s %-15s %-15s %5d %-10s ",a.getDni(),a.getApat(),
   				a.getAmat(),a.getNombre(),a.getEdad(),a.getSexo());
    }
   
-   	public void mostrarPersona(){
+   public void mostrarPersona(){
 		System.out.println("dni        : " + dni);
 		System.out.println("a. paterno : " + apat);
 		System.out.println("a. paterno : " + amat);
@@ -108,18 +107,18 @@ public class Persona {
 		System.out.println("edad       : " + edad);
 		System.out.printf("Sexo       : %s\n",sexo);
    }
-   	public void mostrarPersona(Persona a){
+   public void mostrarPersona(Persona a){
 		System.out.println("dni        : " + a.getDni());
 		System.out.println("a. paterno : " + a.getApat());
 		System.out.println("a. paterno : " + a.getAmat());
 		System.out.println("nombre     : " + a.getNombre());
 		System.out.println("edad       : " + a.getEdad());
-		System.out.printf("Sexo       : %s\n",a.getSexo());
-   	}
+		System.out.println("Sexo       : " + a.getSexo());
+  }
 
-   	public String toString(){
+  public String toString(){
 		String cad="";
 		cad=String.format("%8s %-15s %-15s %-15s %5d %-10s",dni,apat,amat,nombre,edad,sexo);
 		return cad;
-   	}
+  }
 }

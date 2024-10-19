@@ -4,13 +4,13 @@
 *
 *
 * @autor HUANACUNI GOMEZ, Jean Carlos Josue
-* 		 PEREDA CARRANZA, Jose Carlos Enrique
-* @date: 28-09-2024
-* @version 2
+* 		 PEREDA CARRANZA, Jose Carlos Josue
+* @date: 18-10-2024
+* @version 3
 */
-package Clases.Progra2;
+package paqG01Proyectov3;
 
-public class Administrativo extends Persona {
+public class Administrativo extends Persona{
 	private int codAdm;
 	private String area;
 	private float pago;
@@ -19,7 +19,7 @@ public class Administrativo extends Persona {
 		super();
 	}
 	public Administrativo(String vdni, String vapat,String vamat, String vnom, int vedad, String vsexo, int vcodAdm, String vArea, float vpago){
-	   super(vdni, vapat,vamat, vnom, vedad, vsexo);
+	   super(vdni,vapat,vamat,vnom,vedad,vsexo);
 	   codAdm=vcodAdm;
 	   area=vArea;
 	   pago=vpago;
@@ -45,18 +45,17 @@ public class Administrativo extends Persona {
 	}
 
 	public Persona leerPersona(){
-		super.leerPersona();
 		int vcodAdm;
 		String vArea;
 		float vpago;
-
-		System.out.print("codigo de Adm.   : ");
+		super.leerPersona();
+		System.out.print("Cod. de Adm : ");
 		vcodAdm= Leer.datoInt();
 		setCodAdm(vcodAdm);
-		System.out.print("area             : ");
+		System.out.print("Area        : ");
 		vArea= Leer.dato();
 		setArea(vArea);
-		System.out.print("pago             : ");
+		System.out.print("Pago        : ");
 		vpago= Leer.datoFloat();
 		setPago(vpago);
 		return (this);
@@ -65,11 +64,21 @@ public class Administrativo extends Persona {
 		super.escribirPersona();
 		System.out.printf("%10d %-15s %10.2f\n",codAdm,area,pago);
 	}
+	public void escribirPersona(Administrativo a){
+		super.escribirPersona();
+		System.out.printf("%10d %-15s %10.2f\n",a.getCodAdm(),a.getArea(),a.getPago());
+	}
 	public void mostrarPersona(){
 		super.mostrarPersona();
 		System.out.println("codigoAdm  : " + codAdm);
 		System.out.println("area    : " + area);
 		System.out.printf("pago       : %10.2f\n", pago);
+	}
+	public void mostrarPersona(Administrativo a){
+		super.mostrarPersona(a);
+		System.out.println("CodigoAdm  : " + a.getCodAdm());
+		System.out.println("Area       : " + a.getArea());
+		System.out.printf("Pago        : %10.2f\n", a.getPago());
 	}
 	public String toString(){
 		String cad="";
