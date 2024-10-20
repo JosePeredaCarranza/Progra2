@@ -3,11 +3,12 @@
 * descripción :
 *
 *
-* @autor HUANACUNI GOMEZ, Jean Carlos Josue
-* @date: 28-09-2024
+* @autor HUANACUNI GOMEZ, Jean Carlos Josue 
+* 		 PEREDA CARRANZA, Jose Carlos Enrique
+* @date: 18-10-2024
 * @version 1
 */
-package Clases.Progra2;
+package paqG01Proyectov3;
 
 import java.io.BufferedReader;
 import java.io.IOException;
