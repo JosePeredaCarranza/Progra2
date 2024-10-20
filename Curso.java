@@ -21,8 +21,8 @@ public class Curso {
 	private double eparcial;
 	private double efinal;
 	private int dimAl;
-	private final static int minAl=0;
-	private final static int maxAl=1;
+	private final static int minAl=5;
+	private final static int maxAl=8;
 	private final static int numPrac=10;
 
 	public Curso() {
@@ -146,7 +146,7 @@ public class Curso {
 	}
     public void generarNotasAleatorias() {
         Random rand = new Random();
-        for (Alumno alumno : alumnos) {
+        for (Alumno alum : alumnos) {
             double[] practicas = new double[numPrac];
             for (int i = 0; i < numPrac; i++) {
                 practicas[i] = rand.nextDouble() * 20;
@@ -156,6 +156,25 @@ public class Curso {
         eparcial = rand.nextDouble() * 20;
         efinal = rand.nextDouble() * 20;
     }
+    public void agregarAlumno(Alumno A){
+		if(dimAl+1>=maxAl) {
+			System.out.println("Curso lleno...");
+		}
+		else {
+			redimensionar(dimAl+1,1);
+			alumnos[dimAl-1]=new Alumno();
+			alumnos[dimAl-1]=A;
+		}
+	}
+	public void redimensionar(int tam,int n){
+		int i;
+		Alumno[] Aux=new Alumno[tam];
+		for(i=0;i<tam-n;i++ ){
+			Aux[i]=alumnos[i];
+		}
+		dimAl=tam;
+		alumnos=Aux;
+	}
     public double calcularPromedioAlumno() {
         double promPracticas;
         Random rand = new Random();
